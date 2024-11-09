@@ -2,6 +2,12 @@
 
 console.log("Content script injected on:", window.location.href);
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.action === "showPopup") {
+      showPopup();
+    }
+});
+
 function showPopup() {
     const popup = document.createElement('div');
     Object.assign(popup.style, {
@@ -64,4 +70,3 @@ function showPopup() {
 }
 
 showPopup();
-  
